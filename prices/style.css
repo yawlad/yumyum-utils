@@ -1,0 +1,98 @@
+@page {
+  size: A4 landscape; /* Альбомная ориентация */
+  margin: 0; /* Убираем отступы печати */
+}
+
+@font-face {
+  font-family: "Arista";
+  src: url("../fonts/Arista-Pro-Bold-trial.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Rotondac";
+  src: url("../fonts/rotondac.otf") format("opentype");
+}
+
+body {
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+.price-sheet {
+  display: flex;
+  flex-wrap: wrap;
+  width: 297mm; /* Ширина A4 */
+  gap: 0; /* Без отступов между ценниками */
+  margin: auto;
+}
+
+.price-tag {
+  width: 74.25mm; /* Ровно 1/4 ширины A4 */
+  height: 52.5mm; /* Ровно 1/4 высоты A4 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5mm;
+  text-align: center;
+  font-family: "Arista", sans-serif;
+  border: 0.5px solid #ddd; /* Линия для удобного вырезания */
+  box-sizing: border-box;
+  background-image: url("../images/bg.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f2edee;
+  position: relative;
+}
+
+.brand {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff4477;
+  position: absolute;
+  top: 10mm;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+.product-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff4477;
+  position: absolute;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+.price {
+  font-family: "Rotondac", sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #ff9900;
+  -webkit-text-stroke: 1px #ff9900;
+  position: absolute;
+  bottom: 6.5mm;
+  right: 6.5mm;
+}
+
+.logo {
+  font-size: 10px;
+  color: #ff89b5;
+  position: absolute;
+  bottom: 1mm;
+  right: 1mm;
+}
+
+.buttons{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  
+}
