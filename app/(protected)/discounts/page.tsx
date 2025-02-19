@@ -39,7 +39,7 @@ export default function Page() {
       <div className="flex flex-wrap justify-center w-[297mm] mx-auto action-sheet">
         {products.flatMap((product, index) => (
           Array.from({ length: product.quantity }).map((_, i) => (
-            <div key={`${index}-${i}`} className="w-[20%] h-[21mm] p-2 border flex items-center justify-center text-lg font-bold text-center action-tag">
+            <div key={`${index}-${i}`} className="w-[20%] h-[21mm] p-2 border flex items-center justify-center text-[16px] leading-none font-bold text-center action-tag">
               {product.name}
             </div>
           ))
