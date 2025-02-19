@@ -14,7 +14,6 @@ class MainStore {
 
   constructor() {
     makeAutoObservable(this);
-    this.loadFromLocalStorage();
   }
 
   logIn(login: string, password: string) {
