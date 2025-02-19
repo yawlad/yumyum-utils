@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  line-height: 1; /* Эквивалент Tailwind `leading-none` */
+}
+
+@font-face {
+  font-family: "Arista";
+  src: url("/arista.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Rotondac";
+  src: url("/rotondac.otf") format("opentype");
+}
+
+.font-arista {
+  font-family: "Arista", sans-serif;
+}
+
+.font-rotondac {
+  font-family: "Rotondac", sans-serif;
+}
