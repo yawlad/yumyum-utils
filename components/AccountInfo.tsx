@@ -21,6 +21,12 @@ const AccountInfo = observer(() => {
         >
           Ценники
         </Link>
+        <Link
+          className="px-6 py-1 bg-gray-100 rounded-md shadow-md"
+          href={"/converter/"}
+        >
+          Конвертер
+        </Link>
       </div>
       <button
         className="w-full bg-red-500 text-white py-2 rounded-xl mt-4 hover:bg-red-600 transition"
