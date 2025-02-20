@@ -123,14 +123,12 @@ export default function ExcelToXmlConverter() {
   };
 
   return (
-    <div className="p-4 border rounded shadow-md max-w-md mx-auto flex flex-col gap-1">
-      <h2 className="text-lg font-semibold mb-2">Конвертер Excel в XML</h2>
+    <div className="flex flex-col items-start text-center gap-1 p-4 max-w-80 m-auto border mt-6">
+      <h1 className="text-3xl font-bold mb-4 text-center w-full">Конвертер</h1>
       <label>Выберите поставщика:</label>
       <select
-        onChange={(e) =>
-          setSelectedSeller(sellers[parseInt(e.target.value)])
-        }
-        className="mb-2 block w-full"
+        onChange={(e) => setSelectedSeller(sellers[parseInt(e.target.value)])}
+        className="block w-full border p-1"
       >
         {sellers.map((seller, index) => (
           <option key={index} value={index}>
@@ -143,36 +141,37 @@ export default function ExcelToXmlConverter() {
         type="text"
         value={declNum}
         onChange={(e) => setDeclNum(e.target.value)}
-        className="mb-2 block w-full border p-1"
+        className="block w-full border p-1"
       />
       <label>Дата декларации:</label>
       <input
         type="date"
         value={declDate}
         onChange={(e) => setDeclDate(e.target.value)}
-        className="mb-2 block w-full border p-1"
+        className="block w-full border p-1"
       />
       <label>Номер заказа:</label>
       <input
         type="number"
         value={order}
         onChange={(e) => setOrder(e.target.value)}
-        className="mb-2 block w-full border p-1"
+        className="block w-full border p-1"
       />
       <label>Номер спецификации:</label>
       <input
         type="number"
         value={numSpec}
         onChange={(e) => setNumSpec(e.target.value)}
-        className="mb-2 block w-full border p-1"
+        className="block w-full border p-1"
       />
       <label>Дата спецификации:</label>
       <input
         type="date"
         value={dateSpec}
         onChange={(e) => setDateSpec(e.target.value)}
-        className="mb-2 block w-full border p-1"
+        className="block w-full border p-1"
       />
+      <label>Продукты:</label>
       <input
         type="file"
         accept=".xlsx, .xls"
@@ -181,15 +180,15 @@ export default function ExcelToXmlConverter() {
       />
       <button
         onClick={handleConvert}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-blue-500 text-white px-4 py-2 rounded w-full"
       >
         Конвертировать
       </button>
       <button
         onClick={handleDownloadTemplate}
-        className="bg-green-500 text-white px-4 py-2 rounded"
+        className="bg-green-500 text-white px-4 py-2 rounded w-full"
       >
-        Скачать шаблон для товаров
+        Скачать шаблон для продуктов
       </button>
     </div>
   );
