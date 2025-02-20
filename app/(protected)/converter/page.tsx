@@ -19,6 +19,13 @@ const sellers = [
     country_seller: "643",
     id_seller: "540123395982",
   },
+  {
+    name_seller: "ООО ФортунаОпт",
+    address_seller:
+      "692512, Приморский край, г. Уссурийск, ул. Ровная, д. 24Б, оф каб. 11",
+    country_seller: "643",
+    id_seller: "25111З0878",
+  },
 ];
 
 export default function ExcelToXmlConverter() {
