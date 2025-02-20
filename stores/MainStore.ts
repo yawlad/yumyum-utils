@@ -6,6 +6,11 @@ const users = [
     password: "vlad771",
     name: "Влад",
   },
+  {
+    login: "marina",
+    password: "marina",
+    name: "Марина",
+  },
 ];
 
 class MainStore {

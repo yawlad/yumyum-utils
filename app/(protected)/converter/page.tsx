@@ -12,6 +12,13 @@ const sellers = [
     country_seller: "643",
     id_seller: "251114511209",
   },
+  {
+    name_seller: "ИП Андреевская Юлия Евгеньевна",
+    address_seller:
+      "630112, обл. Новосибирская, г. Новосибирск, ул. Кошурникова, д. 10, кв. 138",
+    country_seller: "643",
+    id_seller: "540123395982",
+  },
 ];
 
 export default function ExcelToXmlConverter() {
