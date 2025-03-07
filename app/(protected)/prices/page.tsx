@@ -7,6 +7,7 @@ import * as XLSX from "xlsx";
 interface Product {
   name: string;
   price: number;
+  discount?: number;
 }
 
 export default function Page() {
@@ -21,13 +22,16 @@ export default function Page() {
       const data = new Uint8Array(e.target?.result as ArrayBuffer);
       const workbook = XLSX.read(data, { type: "array" });
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const jsonData = XLSX.utils.sheet_to_json<{ Имя: string; Цена: number }>(
-        sheet
-      );
+      const jsonData = XLSX.utils.sheet_to_json<{
+        Имя: string;
+        Цена: number;
+        Скидка: number;
+      }>(sheet);
 
       const parsedProducts = jsonData.map((row) => ({
         name: row["Имя"],
         price: row["Цена"],
+        discount: row["Скидка"],
       }));
 
       setProducts(parsedProducts);
@@ -88,9 +92,19 @@ export default function Page() {
             <div className="absolute leading-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[22px] font-bold text-pink w-[85%] text-center">
               {product.name}
             </div>
-            <div className="absolute bottom-[6.5mm] right-[6.5mm] text-[28px] font-extrabold text-orange font-rotondac">
-              {product.price.toFixed(2)}
-            </div>
+            {product.discount ? (
+              <div className="absolute bottom-[6.5mm] right-[6.5mm] text-[28px] font-extrabold text-orange font-rotondac flex gap-2 items-center">
+                {product.discount.toFixed(2)}
+                <span className="text-[18px] line-through text-opacity-50">
+                  {product.price.toFixed(2)}
+                </span>
+              </div>
+            ) : (
+              <div className="absolute bottom-[6.5mm] right-[6.5mm] text-[28px] font-extrabold text-orange font-rotondac">
+                {product.price.toFixed(2)}
+              </div>
+            )}
+
             <div className="absolute bottom-[0.7mm] right-[1mm] text-[10px] text-pink-light">
               ООО Дабл Уай
             </div>

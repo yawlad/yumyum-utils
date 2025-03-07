@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "file-saver": "^2.0.5",
+    "heroui-cli": "^1.0.0",
     "mobx": "^6.13.6",
     "mobx-react-lite": "^4.1.0",
     "next": "15.1.7",

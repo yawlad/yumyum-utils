@@ -12,6 +12,7 @@ export default {
         pink: "#ff4477",
         "pink-light": "#ff89b5",
         orange: " #ff9900",
+        red: "#d72630",
       },
       backgroundImage: {
         price: "url('/bg.png')",
