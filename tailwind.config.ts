@@ -11,10 +11,11 @@ export default {
       colors: {
         pink: "#ff4477",
         "pink-light": "#ff89b5",
-        orange: " #ff9900"
+        orange: " #ff9900",
       },
       backgroundImage: {
         price: "url('/bg.png')",
+        "price-discount": "url('/bg_2.png')",
       },
     },
   },

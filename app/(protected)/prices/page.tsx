@@ -1,5 +1,7 @@
 "use client";
 
+import PriceTag from "@/components/PriceTags/PriceTag";
+import PriceTagDiscount from "@/components/PriceTags/PriceTagDiscount";
 import Link from "next/link";
 import { useState } from "react";
 import * as XLSX from "xlsx";
@@ -81,35 +83,18 @@ export default function Page() {
         id="price-sheet"
         className="flex flex-wrap w-[297mm] mx-auto font-arista"
       >
-        {products.map((product, index) => (
-          <div
-            key={index}
-            className="box-border w-[74.25mm] h-[52.5mm] p-2 border flex flex-col items-center justify-center relative bg-price bg-contain bg-center"
-          >
-            <div className="absolute top-[7mm] left-1/2 -translate-x-1/2 text-[32px] font-bold text-pink w-fit">
-              Yum&nbsp;Yum
-            </div>
-            <div className="absolute leading-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[22px] font-bold text-pink w-[85%] text-center">
-              {product.name}
-            </div>
-            {product.discount ? (
-              <div className="absolute bottom-[6.5mm] right-[6.5mm] text-[28px] font-extrabold text-orange font-rotondac flex gap-2 items-center">
-                {product.discount.toFixed(2)}
-                <span className="text-[18px] line-through text-opacity-50">
-                  {product.price.toFixed(2)}
-                </span>
-              </div>
-            ) : (
-              <div className="absolute bottom-[6.5mm] right-[6.5mm] text-[28px] font-extrabold text-orange font-rotondac">
-                {product.price.toFixed(2)}
-              </div>
-            )}
-
-            <div className="absolute bottom-[0.7mm] right-[1mm] text-[10px] text-pink-light">
-              ООО Дабл Уай
-            </div>
-          </div>
-        ))}
+        {products.map((product, index) =>
+          product.discount ? (
+            <PriceTagDiscount
+              key={index}
+              name={product.name}
+              price={product.price}
+              discount={product.discount}
+            />
+          ) : (
+            <PriceTag key={index} name={product.name} price={product.price} />
+          )
+        )}
       </div>
       <style>
         {`
