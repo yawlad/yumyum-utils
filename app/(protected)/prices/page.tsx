@@ -28,13 +28,18 @@ export default function Page() {
         Имя: string;
         Цена: number;
         Скидка: number;
+        Количество: number;
       }>(sheet);
 
-      const parsedProducts = jsonData.map((row) => ({
-        name: row["Имя"],
-        price: row["Цена"],
-        discount: row["Скидка"],
-      }));
+      const parsedProducts = jsonData
+        .filter(
+          (el) => el["Количество"] != 0 && !el["Имя"].includes("поставка")
+        )
+        .map((row) => ({
+          name: row["Имя"],
+          price: row["Цена"],
+          discount: row["Скидка"],
+        }));
 
       setProducts(parsedProducts);
     };
