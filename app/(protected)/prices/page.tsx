@@ -94,7 +94,7 @@ export default function Page() {
           ) : (
             <PriceTag key={index} name={product.name} price={product.price} />
           )
-        )}
+        )}{" "}
       </div>
       <style>
         {`
