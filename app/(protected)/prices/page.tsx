@@ -28,6 +28,7 @@ export default function Page() {
         Имя: string;
         Цена: number;
         Скидка: number;
+        Процент: Number;
         Количество: number;
       }>(sheet);
 
