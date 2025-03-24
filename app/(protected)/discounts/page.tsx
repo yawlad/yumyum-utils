@@ -142,7 +142,7 @@ export default function Page() {
       </div>
 
       {/* Таблица редактирования фантиков */}
-      <table className="w-full border-collapse border border-gray-300 mt-4">
+      <table className="container border-collapse border border-gray-300 mt-4">
         <thead>
           <tr className="bg-gray-100">
             <th className="border p-2">Название</th>
