@@ -8,11 +8,16 @@ interface Product {
   id: number;
   name: string;
   quantity: number;
+  type: number; // 1 - мелкий (зелёный), 2 - средний (оранжевый), 3 - большой (красный)
 }
 
 export default function Page() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [newProduct, setNewProduct] = useState({ name: "", quantity: "" });
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    quantity: "",
+    type: "1", // по умолчанию — мелкий
+  });
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -32,6 +37,7 @@ export default function Page() {
         id: index + 1,
         name: row["Имя"],
         quantity: row["Количество"],
+        type: 1, // по умолчанию при загрузке
       }));
 
       setProducts(parsedProducts);
@@ -48,9 +54,10 @@ export default function Page() {
         id: Date.now(),
         name: newProduct.name,
         quantity: parseInt(newProduct.quantity, 10),
+        type: parseInt(newProduct.type, 10),
       },
     ]);
-    setNewProduct({ name: "", quantity: "" });
+    setNewProduct({ name: "", quantity: "", type: "1" });
   };
 
   const handleEditProduct = (
@@ -63,7 +70,10 @@ export default function Page() {
         p.id === id
           ? {
               ...p,
-              [field]: field === "quantity" ? parseInt(value, 10) || 0 : value,
+              [field]:
+                field === "quantity" || field === "type"
+                  ? parseInt(value, 10) || 0
+                  : value,
             }
           : p
       )
@@ -72,6 +82,19 @@ export default function Page() {
 
   const handleDeleteProduct = (id: number) => {
     setProducts(products.filter((p) => p.id !== id));
+  };
+
+  const getPrizeColor = (type: number) => {
+    switch (type) {
+      case 1:
+        return "bg-green-400"; // мелкий
+      case 2:
+        return "bg-orange-400"; // средний
+      case 3:
+        return "bg-red-500"; // большой
+      default:
+        return "bg-gray-300";
+    }
   };
 
   const downloadTemplate = () => {
@@ -114,7 +137,7 @@ export default function Page() {
       </Link>
 
       {/* Форма добавления нового фантика */}
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap">
         <input
           type="text"
           placeholder="Название"
@@ -133,6 +156,17 @@ export default function Page() {
           }
           className="border p-2 rounded"
         />
+        <select
+          value={newProduct.type}
+          onChange={(e) =>
+            setNewProduct({ ...newProduct, type: e.target.value })
+          }
+          className="border p-2 rounded"
+        >
+          <option value="1">Мелкий (Зелёный)</option>
+          <option value="2">Средний (Оранжевый)</option>
+          <option value="3">Большой (Красный)</option>
+        </select>
         <button
           onClick={handleAddProduct}
           className="px-4 py-2 bg-purple-500 text-white rounded"
@@ -141,12 +175,13 @@ export default function Page() {
         </button>
       </div>
 
-      {/* Таблица редактирования фантиков */}
+      {/* Таблица */}
       <table className="container border-collapse border border-gray-300 mt-4">
         <thead>
           <tr className="bg-gray-100">
             <th className="border p-2">Название</th>
             <th className="border p-2">Количество</th>
+            <th className="border p-2">Тип приза</th>
             <th className="border p-2">Действия</th>
           </tr>
         </thead>
@@ -174,6 +209,19 @@ export default function Page() {
                 />
               </td>
               <td className="border p-2">
+                <select
+                  value={product.type}
+                  onChange={(e) =>
+                    handleEditProduct(product.id, "type", e.target.value)
+                  }
+                  className="w-full text-center"
+                >
+                  <option value={1}>Мелкий</option>
+                  <option value={2}>Средний</option>
+                  <option value={3}>Большой</option>
+                </select>
+              </td>
+              <td className="border p-2">
                 <button
                   onClick={() => handleDeleteProduct(product.id)}
                   className="bg-red-500 text-white px-2 py-1 rounded"
@@ -186,13 +234,15 @@ export default function Page() {
         </tbody>
       </table>
 
-      {/* Фанты для печати */}
+      {/* Печать */}
       <div className="flex flex-wrap justify-center w-[297mm] mx-auto action-sheet">
         {products.flatMap((product) =>
           Array.from({ length: product.quantity }).map((_, i) => (
             <div
               key={`${product.id}-${i}`}
-              className="w-[20%] h-[21mm] p-2 border flex items-center justify-center text-[16px] leading-none font-bold text-center action-tag"
+              className={`w-[20%] h-[21mm] p-2 border flex items-center justify-center text-[16px] leading-none font-bold text-center action-tag ${getPrizeColor(
+                product.type
+              )}`}
             >
               {product.name}
             </div>
