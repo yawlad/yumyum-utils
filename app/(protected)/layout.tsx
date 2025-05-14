@@ -1,19 +1,20 @@
 "use client";
-import mainStore from "@/stores/MainStore";
-import { observer } from "mobx-react-lite";
+import useMainStore from "@/stores/useMainStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const Layout = observer(({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+  const isAuth = useMainStore((state) => state.isAuth);
+
   useEffect(() => {
-    if (!mainStore.isAuth) {
+    if (!isAuth) {
       router.push("/");
     }
     return () => {};
-  }, []);
+  }, [isAuth, router]);
 
-  return mainStore.isAuth ? <>{children}</> : <></>;
-});
+  return isAuth ? <>{children}</> : <></>;
+};
 
 export default Layout;

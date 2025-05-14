@@ -10,8 +10,10 @@ export default {
     extend: {
       colors: {
         pink: "#ff4477",
+        "pink-b": "#ff0d4d",
         "pink-light": "#ff89b5",
         orange: " #ff9900",
+        "orange-b": " #e58a00",
       },
       backgroundImage: {
         price: "url('/bg.png')",

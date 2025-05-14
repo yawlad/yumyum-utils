@@ -1,12 +1,15 @@
-import mainStore from "@/stores/MainStore";
-import { observer } from "mobx-react-lite";
+"use client";
+
+import useMainStore from "@/stores/useMainStore";
 import Link from "next/link";
 
-const AccountInfo = observer(() => {
+const AccountInfo = () => {
+  const { name, logOut } = useMainStore();
+
   return (
     <div className="bg-white p-8 rounded-2xl shadow-lg w-96">
       <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">
-        {`Привет, ${mainStore.name}!`}
+        {`Привет, ${name}!`}
       </h2>
       <div className="flex flex-wrap gap-4 justify-evenly">
         <Link
@@ -30,11 +33,12 @@ const AccountInfo = observer(() => {
       </div>
       <button
         className="w-full bg-red-500 text-white py-2 rounded-xl mt-4 hover:bg-red-600 transition"
-        onClick={() => mainStore.logOut()}
+        onClick={() => logOut()}
       >
         Выйти
       </button>
     </div>
   );
-});
+};
+
 export default AccountInfo;

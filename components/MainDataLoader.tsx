@@ -1,20 +1,19 @@
 "use client";
-import mainStore from "@/stores/MainStore";
-import { observer } from "mobx-react-lite";
+
+import useMainStore from "@/stores/useMainStore";
 import { useEffect, useState } from "react";
 
-const MainDataLoader = observer(
-  ({ children }: { children: React.ReactNode }) => {
-    const [loading, setLoading] = useState<boolean>(true);
+const MainDataLoader = ({ children }: { children: React.ReactNode }) => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const { isAuth, loadFromLocalStorage } = useMainStore();
 
-    useEffect(() => {
-      mainStore.loadFromLocalStorage();
-      setLoading(false);
-      return () => {};
-    }, []);
+  useEffect(() => {
+    loadFromLocalStorage();
+    setLoading(false);
+    return () => {};
+  }, []);
 
-    return loading ? <>LOADING...</> : <>{children}</>;
-  }
-);
+  return loading ? <>LOADING...</> : <>{children}</>;
+};
 
 export default MainDataLoader;

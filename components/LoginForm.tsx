@@ -1,13 +1,13 @@
 "use client";
-import { observer } from "mobx-react-lite";
-import { useState } from "react";
-import mainStore from "../stores/MainStore";
-import Link from "next/link";
 
-const LoginForm = observer(() => {
+import { useState } from "react";
+import useMainStore from "@/stores/useMainStore";
+
+const LoginForm = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { logIn } = useMainStore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const LoginForm = observer(() => {
       return;
     }
     setError("");
-    mainStore.logIn(login, password);
+    logIn(login, password);
   };
 
   return (
@@ -49,6 +49,6 @@ const LoginForm = observer(() => {
       </form>
     </div>
   );
-});
+};
 
 export default LoginForm;

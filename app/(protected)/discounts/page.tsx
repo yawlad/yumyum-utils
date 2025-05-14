@@ -16,7 +16,7 @@ export default function Page() {
   const [newProduct, setNewProduct] = useState({
     name: "",
     quantity: "",
-    type: "1", // по умолчанию — мелкий
+    type: "1",
   });
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,13 +31,14 @@ export default function Page() {
       const jsonData = XLSX.utils.sheet_to_json<{
         Имя: string;
         Количество: number;
+        Тип: number;
       }>(sheet);
 
       const parsedProducts = jsonData.map((row, index) => ({
         id: index + 1,
         name: row["Имя"],
         quantity: row["Количество"],
-        type: 1, // по умолчанию при загрузке
+        type: row["Тип"],
       }));
 
       setProducts(parsedProducts);
@@ -87,13 +88,13 @@ export default function Page() {
   const getPrizeColor = (type: number) => {
     switch (type) {
       case 1:
-        return "bg-green-400"; // мелкий
+        return "text-green-500"; // мелкий
       case 2:
-        return "bg-orange-400"; // средний
+        return "text-orange"; // средний
       case 3:
-        return "bg-red-500"; // большой
+        return "text-red-500"; // большой
       default:
-        return "bg-gray-300";
+        return "text-gray-300";
     }
   };
 
