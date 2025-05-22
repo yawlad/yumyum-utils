@@ -2,35 +2,14 @@ import Link from "next/link";
 import useMainStore from "@/stores/useMainStore"; // Adjust the import path
 
 export default function FantsActions() {
-  const { clearFants } = useMainStore();
-
-  const downloadTemplate = () => {
-    const XLSX = require("xlsx");
-    const worksheet = XLSX.utils.aoa_to_sheet([
-      ["Имя", "Количество", "Тип"],
-      ["Пример", 1, 1],
-    ]);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Шаблон");
-    XLSX.writeFile(workbook, "template.xlsx");
-  };
+  const { clearFants, fants } = useMainStore();
 
   const printSection = () => {
     window.print();
   };
 
-  const handleClearTable = () => {
-    clearFants();
-  };
-
   return (
-    <div className="flex gap-4 flex-wrap justify-center">
-      <button
-        onClick={downloadTemplate}
-        className="px-4 py-2 bg-green-500 text-white rounded"
-      >
-        Скачать шаблон
-      </button>
+    <div className="flex gap-2 justify-center items-center">
       <button
         onClick={printSection}
         className="px-4 py-2 bg-blue-500 text-white rounded print:hidden"
@@ -38,13 +17,16 @@ export default function FantsActions() {
         Печать
       </button>
       <button
-        onClick={handleClearTable}
+        onClick={clearFants}
         className="px-4 py-2 bg-red-500 text-white rounded print:hidden"
       >
         Очистить таблицу
       </button>
+      <div className="px-4 py-2 bg-gray-700 text-white rounded">
+        {fants.length}
+      </div>
       <Link href="/" className="text-blue-500 print:hidden">
-        Назад
+        На главную
       </Link>
     </div>
   );

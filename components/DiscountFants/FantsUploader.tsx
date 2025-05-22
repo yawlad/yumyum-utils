@@ -34,12 +34,31 @@ export default function FantsUploader() {
     reader.readAsArrayBuffer(file);
   };
 
+  const downloadTemplate = () => {
+    const XLSX = require("xlsx");
+    const worksheet = XLSX.utils.aoa_to_sheet([
+      ["Имя", "Количество", "Тип"],
+      ["Пример", 1, 1],
+    ]);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Шаблон");
+    XLSX.writeFile(workbook, "template.xlsx");
+  };
+
   return (
-    <input
-      type="file"
-      accept=".xlsx"
-      onChange={handleFileUpload}
-      className="p-2 border rounded"
-    />
+    <div className="flex flex-col gap-2">
+      <input
+        type="file"
+        accept=".xlsx"
+        onChange={handleFileUpload}
+        className="p-2 border rounded"
+      />
+      <button
+        onClick={downloadTemplate}
+        className="px-4 py-2 bg-green-500 text-white rounded"
+      >
+        Скачать шаблон
+      </button>
+    </div>
   );
 }
