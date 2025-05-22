@@ -11,7 +11,7 @@ export default function FantsTag({ name, type, index, fantId }: FantTagProps) {
       case 1:
         return "text-green-500"; // мелкий
       case 2:
-        return "text-orange-500"; // средний
+        return "text-orange"; // средний
       case 3:
         return "text-red-500"; // большой
       default:
