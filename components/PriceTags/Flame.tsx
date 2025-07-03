@@ -11,7 +11,7 @@ const Flame = ({ active }: FlameProps) => {
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 91.16 122.88"
-      className="w-3"
+      className="w-[10px]"
     >
       <defs></defs>
       <title>flames</title>

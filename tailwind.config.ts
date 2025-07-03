@@ -12,6 +12,7 @@ export default {
         pink: "#ff4477",
         "pink-b": "#ff0d4d",
         "pink-light": "#ff89b5",
+        "pink-light-b": "#ff89b5",
         orange: " #ff9900",
         "orange-b": " #e58a00",
       },
