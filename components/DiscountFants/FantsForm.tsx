@@ -1,8 +1,8 @@
 import { useState } from "react";
-import useMainStore from "@/stores/useMainStore"; // Adjust the import path
+import useFantsStore from "@/stores/useFantsStore";
 
 export default function FantsForm() {
-  const { addFant } = useMainStore();
+  const { addFant } = useFantsStore();
   const [newProduct, setNewProduct] = useState({
     name: "",
     quantity: "",

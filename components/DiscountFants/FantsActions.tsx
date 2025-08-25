@@ -1,8 +1,8 @@
 import Link from "next/link";
-import useMainStore from "@/stores/useMainStore"; // Adjust the import path
+import useFantsStore from "@/stores/useFantsStore"; // Adjust the import path
 
 export default function FantsActions() {
-  const { clearFants, fants } = useMainStore();
+  const { clearFants, fants } = useFantsStore();
 
   const printSection = () => {
     window.print();

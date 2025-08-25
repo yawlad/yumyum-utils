@@ -1,8 +1,8 @@
 import * as XLSX from "xlsx";
-import useMainStore from "@/stores/useMainStore"; // Adjust the import path
+import useFantsStore from "@/stores/useFantsStore";
 
 export default function FantsUploader() {
-  const { clearFants, addFant } = useMainStore();
+  const { clearFants, addFant } = useFantsStore();
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

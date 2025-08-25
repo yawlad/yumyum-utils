@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import useMainStore from "@/stores/useMainStore"; // Adjust the import path
+import useFantsStore from "@/stores/useFantsStore";
 import FantsActions from "./FantsActions";
 import FantsForm from "./FantsForm";
 import FantsSheet from "./FantsSheet";
@@ -9,7 +9,7 @@ import FantsTable from "./FantsTable";
 import FantsUploader from "./FantsUploader";
 
 export default function DiscountsPage() {
-  const { loadFromLocalStorage } = useMainStore();
+  const { loadFromLocalStorage } = useFantsStore();
 
   useEffect(() => {
     loadFromLocalStorage();

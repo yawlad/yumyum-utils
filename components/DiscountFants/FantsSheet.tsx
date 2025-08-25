@@ -1,8 +1,8 @@
-import useMainStore from "@/stores/useMainStore"; // Adjust the import path
+import useFantsStore from "@/stores/useFantsStore";
 import FantsTag from "./FantsTag";
 
 export default function FantsSheet() {
-  const { fants } = useMainStore();
+  const { fants } = useFantsStore();
 
   return (
     <div>

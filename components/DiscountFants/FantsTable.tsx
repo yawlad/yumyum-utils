@@ -1,7 +1,7 @@
-import useMainStore from "@/stores/useMainStore"; // Adjust the import path
+import useFantsStore from "@/stores/useFantsStore";
 
 export default function FantsTable() {
-  const { fants, updateFant, removeFant } = useMainStore();
+  const { fants, updateFant, removeFant } = useFantsStore();
 
   const handleEditProduct = (
     id: number,
